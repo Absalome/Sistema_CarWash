@@ -1385,9 +1385,9 @@ jComboBoxTipoMotor.addActionListener(new ActionListener() {
         if (selectedRow != -1) {
             int modelRow = jTableClientes.convertRowIndexToModel(selectedRow);
 
-        // Ajuste: Pega o ID da coluna 0 e o nome da coluna correta (assumindo coluna 1)
-        String nome = (String) jTableClientes.getValueAt(modelRow, 1); // Pega o nome da coluna 1
-        String sexo = (String) jTableClientes.getValueAt(modelRow, 2); // Ajuste para a coluna correta
+
+        String nome = (String) jTableClientes.getValueAt(modelRow, 1); 
+        String sexo = (String) jTableClientes.getValueAt(modelRow, 2); 
         String email = (String) jTableClientes.getValueAt(modelRow, 3);
         String contacto = (String) jTableClientes.getValueAt(modelRow, 4);
         String morada = (String) jTableClientes.getValueAt(modelRow, 5);
@@ -1399,7 +1399,7 @@ jComboBoxTipoMotor.addActionListener(new ActionListener() {
         // Configura os dados no painel de cadastro
         setClienteData(nome, sexo, email, contacto, morada, marca, modelo, matricula, status);
 
-        // Muda para o painel de cadastro (P2)
+       
         Paineis.setSelectedComponent(P2);
         } else {
             JOptionPane.showMessageDialog(null, "Por favor, selecione um cliente para editar.");

@@ -46,6 +46,7 @@ public class Login extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jLabelMSG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("LOGIN");
@@ -139,6 +140,9 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        jLabelMSG.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabelMSG.setForeground(new java.awt.Color(255, 0, 0));
+
         javax.swing.GroupLayout LeftLayout = new javax.swing.GroupLayout(Left);
         Left.setLayout(LeftLayout);
         LeftLayout.setHorizontalGroup(
@@ -148,17 +152,22 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(137, 137, 137))
             .addGroup(LeftLayout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addGroup(LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(LeftLayout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jEmail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
-                    .addComponent(jPassword, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(58, 58, 58)
+                        .addGroup(LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(LeftLayout.createSequentialGroup()
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton2))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jEmail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
+                            .addComponent(jPassword, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING)))
+                    .addGroup(LeftLayout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabelMSG, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         LeftLayout.setVerticalGroup(
@@ -180,7 +189,9 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(51, 51, 51))
+                .addGap(18, 18, 18)
+                .addComponent(jLabelMSG, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jPanel1.add(Left);
@@ -231,26 +242,26 @@ public class Login extends javax.swing.JFrame {
         ResultSet rs = Pst.executeQuery();
 
         if (rs.next()) {
-            // Exibe o JFrame com a imagem
+            
             Imagem_timer imagemFrame = new Imagem_timer();
-            imagemFrame.setLocationRelativeTo(null); // Centraliza o frame
+            imagemFrame.setLocationRelativeTo(null); 
             imagemFrame.setVisible(true);
 
-            // Cria um timer para esperar 5 segundos antes de abrir a tela do funcionário
+            
             Timer timer = new Timer(5000, new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     imagemFrame.dispose(); // Fecha o frame com a imagem
-                    new Home_Funcionario.setLocationRelativeTo(null); // Centraliza o frame
-                    new Home_Funcionario().setVisible(true); // Abre a tela do funcionário
+                    new Home_Funcionario.setLocationRelativeTo(null); 
+                    new Home_Funcionario().setVisible(true); 
                 }
             });
-            timer.setRepeats(false); // Garante que o timer execute apenas uma vez
+            timer.setRepeats(false);
             timer.start();
 
-            this.setVisible(false); // Fecha a tela de login
+            this.setVisible(false); 
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Senha ou e-mail incorretos, verifique e tente novamente.");
+            jLabelMSG.setText("Senha ou e-mail incorretos, verifique e tente novamente.");
         }
     } catch (SQLException e) {
         JOptionPane.showMessageDialog(rootPane, "Erro ao realizar login: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
@@ -354,6 +365,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabelMSG;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPassword;
     // End of variables declaration//GEN-END:variables

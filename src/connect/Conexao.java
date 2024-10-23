@@ -11,7 +11,7 @@ public class Conexao {
     public static Connection connect() {
         Connection conn = null;
         try {
-            // URL de conexão JDBC
+            // URL de conexão JDBc
             String url = "jdbc:mysql://localhost:3306/testesdb"; 
             String user = "root"; // Nome de usuário do MySQL
             String password = ""; // Senha do MySQL (vazio se não houver)
