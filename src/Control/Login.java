@@ -252,7 +252,6 @@ public class Login extends javax.swing.JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     imagemFrame.dispose(); // Fecha o frame com a imagem
-                    new Home_Funcionario.setLocationRelativeTo(null); 
                     new Home_Funcionario().setVisible(true); 
                 }
             });
@@ -326,7 +325,7 @@ public class Login extends javax.swing.JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     imagemFrame.dispose(); // Fecha o frame com a imagem
-                    new Home_Cliente.setLocationRelativeTo(null); // Centraliza o frame
+                 
                     new Home_Cliente().setVisible(true); // Abre a tela do funcionário
                 }
             });
