@@ -12,6 +12,9 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.util.regex.PatternSyntaxException;
 import javax.swing.RowFilter;
 import javax.swing.table.TableRowSorter;
@@ -33,51 +36,8 @@ public class Home_Admin extends javax.swing.JFrame {
          carregarAgendamentosFeitos ();
          carregarClientesNaTabela();
          
-         
- jCheckBoxLavagemInterna.addItemListener(new ItemListener() {
-    @Override
-    public void itemStateChanged(ItemEvent e) {
-        calcularTotal();
-    }
-});
-
-jCheckBoxLavagemExterna.addItemListener(new ItemListener() {
-    @Override
-    public void itemStateChanged(ItemEvent e) {
-        calcularTotal();
-    }
-});
-
-jCheckBoxPolimento.addItemListener(new ItemListener() {
-    @Override
-    public void itemStateChanged(ItemEvent e) {
-        calcularTotal();
-    }
-});
-
-jCheckBoxLavagemCompleta.addItemListener(new ItemListener() {
-    @Override
-    public void itemStateChanged(ItemEvent e) {
-        calcularTotal();
-    }
-});
-
-jCheckBoxLavagemRodape.addItemListener(new ItemListener() {
-    @Override
-    public void itemStateChanged(ItemEvent e) {
-        calcularTotal();
-    }
-});
-
-jCheckBoxHibernizacao.addItemListener(new ItemListener() {
-    @Override
-    public void itemStateChanged(ItemEvent e) {
-        calcularTotal();
-    }
-});
 
          
-
     }
 private void carregarFuncionariosNaTabela() {
     try {
@@ -182,30 +142,10 @@ jComboBoxTipoMotor.addActionListener(new ActionListener() {
 });
 
 
-    // Verificando os checkboxes e adicionando os preços dos serviços
-    if (jCheckBoxLavagemInterna.isSelected()) {
-        total += 1000; 
-    }
-    if (jCheckBoxLavagemExterna.isSelected()) {
-        total += 800; 
-    }
-    if (jCheckBoxPolimento.isSelected()) {
-        total += 10000; 
-    }
-    if (jCheckBoxLavagemCompleta.isSelected()) {
-        total += 1700; 
-    }
-    if (jCheckBoxLavagemRodape.isSelected()) {
-        total += 500; 
-    }
-    if (jCheckBoxHibernizacao.isSelected()) {
-        total += 1500; 
-    }
 
     // Atualizando o campo de total com o resultado final
     jTextFieldTotal.setText(String.valueOf(total));
 }
-
 
 
 private void carregarAgendamentos() {
@@ -369,18 +309,12 @@ private void carregarAgendamentosFeitos() {
         P7 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jCheckBoxLavagemInterna = new javax.swing.JCheckBox();
-        jCheckBoxLavagemExterna = new javax.swing.JCheckBox();
-        jCheckBoxPolimento = new javax.swing.JCheckBox();
-        jCheckBoxLavagemCompleta = new javax.swing.JCheckBox();
-        jCheckBoxHibernizacao = new javax.swing.JCheckBox();
         jTextFieldMarca = new javax.swing.JTextField();
         jTextFieldPlaca = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jButtonSalvarAgendamento = new javax.swing.JButton();
         jTextFieldTotal = new javax.swing.JLabel();
-        jCheckBoxLavagemRodape = new javax.swing.JCheckBox();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jTextFieldProprietario = new javax.swing.JTextField();
@@ -393,6 +327,25 @@ private void carregarAgendamentosFeitos() {
         jComboBoxTipoMotor = new javax.swing.JComboBox<>();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
+        jButton18 = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        LavagemInterna = new javax.swing.JTextField();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jCheckBox2 = new javax.swing.JCheckBox();
+        jLabel33 = new javax.swing.JLabel();
+        LavagemExterna = new javax.swing.JTextField();
+        LavagemCompleta = new javax.swing.JTextField();
+        jCheckBox3 = new javax.swing.JCheckBox();
+        jLabel34 = new javax.swing.JLabel();
+        PolimentoEnceramento = new javax.swing.JTextField();
+        jCheckBox4 = new javax.swing.JCheckBox();
+        jLabel35 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
+        jCheckBox5 = new javax.swing.JCheckBox();
+        jLabel36 = new javax.swing.JLabel();
+        LavagemRodasPneus = new javax.swing.JTextField();
+        jCheckBox6 = new javax.swing.JCheckBox();
         P1 = new javax.swing.JPanel();
         P13 = new javax.swing.JPanel();
         jLabel29 = new javax.swing.JLabel();
@@ -467,6 +420,70 @@ private void carregarAgendamentosFeitos() {
         jButton12 = new javax.swing.JButton();
         jLabel28 = new javax.swing.JLabel();
         pesquisajTextField = new javax.swing.JTextField();
+        P16 = new javax.swing.JPanel();
+        jLabel69 = new javax.swing.JLabel();
+        jLabel70 = new javax.swing.JLabel();
+        jLabel71 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel72 = new javax.swing.JLabel();
+        jLabel73 = new javax.swing.JLabel();
+        jSeparator5 = new javax.swing.JSeparator();
+        jLabel75 = new javax.swing.JLabel();
+        jLabel76 = new javax.swing.JLabel();
+        jLabel77 = new javax.swing.JLabel();
+        jTextFieldLavagemInterna = new javax.swing.JTextField();
+        jLabel78 = new javax.swing.JLabel();
+        jLabel79 = new javax.swing.JLabel();
+        jTextFieldLavagemCompleta = new javax.swing.JTextField();
+        jLabel80 = new javax.swing.JLabel();
+        jTextFieldLavagemRodasPneus = new javax.swing.JTextField();
+        jLabel81 = new javax.swing.JLabel();
+        jLabel82 = new javax.swing.JLabel();
+        jSeparator6 = new javax.swing.JSeparator();
+        jLabel83 = new javax.swing.JLabel();
+        jLabel84 = new javax.swing.JLabel();
+        jLabel85 = new javax.swing.JLabel();
+        jSeparator7 = new javax.swing.JSeparator();
+        jLabel86 = new javax.swing.JLabel();
+        jButton19 = new javax.swing.JButton();
+        jButton20 = new javax.swing.JButton();
+        jButton21 = new javax.swing.JButton();
+        jLabel93 = new javax.swing.JLabel();
+        jTextFieldLavagemExterna = new javax.swing.JTextField();
+        jLabel94 = new javax.swing.JLabel();
+        jLabel95 = new javax.swing.JLabel();
+        jTextFieldPolimentoEnceramento = new javax.swing.JTextField();
+        jLabel96 = new javax.swing.JLabel();
+        jTextFieldLavagemExterna2 = new javax.swing.JTextField();
+        jTextFieldLavagemInterna2 = new javax.swing.JTextField();
+        jLabel44 = new javax.swing.JLabel();
+        jLabel66 = new javax.swing.JLabel();
+        jLabel46 = new javax.swing.JLabel();
+        jTextFieldLavagemCompleta2 = new javax.swing.JTextField();
+        jLabel45 = new javax.swing.JLabel();
+        jLabel68 = new javax.swing.JLabel();
+        jTextFieldPolimentoEnceramento2 = new javax.swing.JTextField();
+        jLabel67 = new javax.swing.JLabel();
+        jTextFieldLavagemRodasPneus2 = new javax.swing.JTextField();
+        jLabel48 = new javax.swing.JLabel();
+        jLabel47 = new javax.swing.JLabel();
+        jLabel43 = new javax.swing.JLabel();
+        jLabel65 = new javax.swing.JLabel();
+        jLabel87 = new javax.swing.JLabel();
+        jLabel88 = new javax.swing.JLabel();
+        jTextFieldLavagemInterna3 = new javax.swing.JTextField();
+        jLabel89 = new javax.swing.JLabel();
+        jLabel90 = new javax.swing.JLabel();
+        jTextFieldLavagemExterna3 = new javax.swing.JTextField();
+        jLabel91 = new javax.swing.JLabel();
+        jLabel92 = new javax.swing.JLabel();
+        jTextFieldLavagemCompleta3 = new javax.swing.JTextField();
+        jLabel97 = new javax.swing.JLabel();
+        jLabel98 = new javax.swing.JLabel();
+        jTextFieldPolimentoEnceramento3 = new javax.swing.JTextField();
+        jLabel99 = new javax.swing.JLabel();
+        jLabel100 = new javax.swing.JLabel();
+        jTextFieldLavagemRodasPneus3 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -703,26 +720,6 @@ private void carregarAgendamentosFeitos() {
         jLabel16.setText("Placa");
         P7.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, -1, 28));
 
-        jCheckBoxLavagemInterna.setForeground(new java.awt.Color(0, 0, 0));
-        jCheckBoxLavagemInterna.setText("Lavagem Interna");
-        P7.add(jCheckBoxLavagemInterna, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, -1, -1));
-
-        jCheckBoxLavagemExterna.setForeground(new java.awt.Color(0, 0, 0));
-        jCheckBoxLavagemExterna.setText("Lavagem Externa");
-        P7.add(jCheckBoxLavagemExterna, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 400, -1, -1));
-
-        jCheckBoxPolimento.setForeground(new java.awt.Color(0, 0, 0));
-        jCheckBoxPolimento.setText("Polimento e Enceramento");
-        P7.add(jCheckBoxPolimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(359, 355, -1, -1));
-
-        jCheckBoxLavagemCompleta.setForeground(new java.awt.Color(0, 0, 0));
-        jCheckBoxLavagemCompleta.setText("Lavagem Completa");
-        P7.add(jCheckBoxLavagemCompleta, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 400, -1, -1));
-
-        jCheckBoxHibernizacao.setForeground(new java.awt.Color(0, 0, 0));
-        jCheckBoxHibernizacao.setText("Hibernização e Tratamento de Bancos");
-        P7.add(jCheckBoxHibernizacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 360, -1, -1));
-
         jTextFieldMarca.setBackground(new java.awt.Color(255, 255, 255));
         P7.add(jTextFieldMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 138, -1));
 
@@ -754,10 +751,6 @@ private void carregarAgendamentosFeitos() {
         jTextFieldTotal.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0)));
         P7.add(jTextFieldTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 610, 100, 25));
 
-        jCheckBoxLavagemRodape.setForeground(new java.awt.Color(0, 0, 0));
-        jCheckBoxLavagemRodape.setText("Lavagem Externa");
-        P7.add(jCheckBoxLavagemRodape, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 400, -1, -1));
-
         jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setText("Contacto");
@@ -773,7 +766,12 @@ private void carregarAgendamentosFeitos() {
 
         jComboBoxTipoViatura.setBackground(new java.awt.Color(255, 255, 255));
         jComboBoxTipoViatura.setForeground(new java.awt.Color(0, 0, 0));
-        jComboBoxTipoViatura.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pesado", "Especial", "Ligeiro Pessoal", "Motocicleta" }));
+        jComboBoxTipoViatura.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ligeiro", "Medio", "Pesado" }));
+        jComboBoxTipoViatura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxTipoViaturaActionPerformed(evt);
+            }
+        });
         P7.add(jComboBoxTipoViatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, 130, -1));
 
         jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -812,6 +810,62 @@ private void carregarAgendamentosFeitos() {
         jLabel25.setForeground(new java.awt.Color(0, 0, 0));
         jLabel25.setText("Tipo de Motor");
         P7.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 280, -1, -1));
+
+        jButton18.setText("jButton18");
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
+        P7.add(jButton18, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, -1, -1));
+
+        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel12.setText("Lavagem Completa");
+        P7.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 440, -1, -1));
+
+        jLabel32.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel32.setText("Lavagem Interna");
+        P7.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 340, -1, -1));
+
+        LavagemInterna.setBackground(new java.awt.Color(255, 255, 255));
+        P7.add(LavagemInterna, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, -1, -1));
+        P7.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 440, -1, -1));
+        P7.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 340, -1, -1));
+
+        jLabel33.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel33.setText("Lavagem Externa");
+        P7.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 390, -1, -1));
+
+        LavagemExterna.setBackground(new java.awt.Color(255, 255, 255));
+        P7.add(LavagemExterna, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 390, -1, -1));
+
+        LavagemCompleta.setBackground(new java.awt.Color(255, 255, 255));
+        P7.add(LavagemCompleta, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 440, -1, -1));
+        P7.add(jCheckBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 390, -1, -1));
+
+        jLabel34.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel34.setText("Polimento e Enceramento");
+        P7.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 340, -1, -1));
+
+        PolimentoEnceramento.setBackground(new java.awt.Color(255, 255, 255));
+        P7.add(PolimentoEnceramento, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 340, -1, -1));
+        P7.add(jCheckBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 340, -1, -1));
+
+        jLabel35.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel35.setText("Hibernização e Tratamento de Bancos");
+        P7.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 380, 210, -1));
+
+        jTextField6.setBackground(new java.awt.Color(255, 255, 255));
+        P7.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 370, -1, -1));
+        P7.add(jCheckBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 370, -1, -1));
+
+        jLabel36.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel36.setText("Lavagem de Rodas e Pneus");
+        P7.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 420, -1, -1));
+
+        LavagemRodasPneus.setBackground(new java.awt.Color(255, 255, 255));
+        P7.add(LavagemRodasPneus, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 410, -1, -1));
+        P7.add(jCheckBox6, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 410, -1, -1));
 
         Paineis.addTab("tab4", P7);
 
@@ -1522,9 +1576,272 @@ private void carregarAgendamentosFeitos() {
 
         Paineis.addTab("tab10", P10);
 
+        P16.setBackground(new java.awt.Color(153, 255, 255));
+        P16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        P16.add(jLabel69, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 24, -1, 41));
+
+        jLabel70.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel70.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel70.setText("Absa CarWash");
+        P16.add(jLabel70, new org.netbeans.lib.awtextra.AbsoluteConstraints(69, 24, -1, -1));
+
+        jLabel71.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel71.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel71.setText("Gestão Financeira");
+        P16.add(jLabel71, new org.netbeans.lib.awtextra.AbsoluteConstraints(69, 49, -1, -1));
+
+        jLabel31.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel31.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel31.setText("Tabela de preços");
+        P16.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(521, 64, -1, -1));
+
+        jLabel72.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel72MouseClicked(evt);
+            }
+        });
+        P16.add(jLabel72, new org.netbeans.lib.awtextra.AbsoluteConstraints(1203, 12, -1, 40));
+
+        jLabel73.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel73MouseClicked(evt);
+            }
+        });
+        P16.add(jLabel73, new org.netbeans.lib.awtextra.AbsoluteConstraints(1101, 12, -1, -1));
+
+        jSeparator5.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator5.setForeground(new java.awt.Color(0, 0, 0));
+        P16.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 1070, 10));
+
+        jLabel75.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel75.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel75.setText("Ligeiro");
+        P16.add(jLabel75, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 140, -1, -1));
+        P16.add(jLabel76, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 135, -1, -1));
+
+        jLabel77.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel77.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel77.setText("Lavagem Interna");
+        P16.add(jLabel77, new org.netbeans.lib.awtextra.AbsoluteConstraints(58, 181, -1, -1));
+        P16.add(jTextFieldLavagemInterna, new org.netbeans.lib.awtextra.AbsoluteConstraints(58, 209, 69, 24));
+
+        jLabel78.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel78.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel78.setText("MZN");
+        P16.add(jLabel78, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 217, -1, -1));
+
+        jLabel79.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel79.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel79.setText("Lavagem Completa");
+        P16.add(jLabel79, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 180, -1, -1));
+        P16.add(jTextFieldLavagemCompleta, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, 80, 24));
+
+        jLabel80.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel80.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel80.setText("MZN");
+        P16.add(jLabel80, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, -1, -1));
+        P16.add(jTextFieldLavagemRodasPneus, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 210, 110, 24));
+
+        jLabel81.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel81.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel81.setText("Lavagem de Rodas e Pneus");
+        P16.add(jLabel81, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 180, -1, -1));
+
+        jLabel82.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel82.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel82.setText("MZN");
+        P16.add(jLabel82, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 210, -1, -1));
+
+        jSeparator6.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator6.setForeground(new java.awt.Color(0, 0, 0));
+        P16.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 1070, 10));
+
+        jLabel83.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel83.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel83.setText("Medio");
+        P16.add(jLabel83, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 305, -1, -1));
+        P16.add(jLabel84, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 304, -1, -1));
+
+        jLabel85.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel85.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel85.setText("Pesado");
+        P16.add(jLabel85, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 479, -1, -1));
+
+        jSeparator7.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator7.setForeground(new java.awt.Color(0, 0, 0));
+        P16.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 500, 1070, 10));
+        P16.add(jLabel86, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 478, -1, -1));
+
+        jButton19.setBackground(new java.awt.Color(51, 51, 51));
+        jButton19.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jButton19.setForeground(new java.awt.Color(255, 255, 255));
+        jButton19.setText("Atualizar");
+        jButton19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton19ActionPerformed(evt);
+            }
+        });
+        P16.add(jButton19, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 170, -1, -1));
+
+        jButton20.setBackground(new java.awt.Color(51, 51, 51));
+        jButton20.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jButton20.setForeground(new java.awt.Color(255, 255, 255));
+        jButton20.setText("Atualizar");
+        jButton20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton20ActionPerformed(evt);
+            }
+        });
+        P16.add(jButton20, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 340, -1, -1));
+
+        jButton21.setBackground(new java.awt.Color(51, 51, 51));
+        jButton21.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jButton21.setForeground(new java.awt.Color(255, 255, 255));
+        jButton21.setText("Atualizar");
+        jButton21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton21ActionPerformed(evt);
+            }
+        });
+        P16.add(jButton21, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 550, -1, -1));
+
+        jLabel93.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel93.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel93.setText("Lavagem Externa");
+        P16.add(jLabel93, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 180, -1, -1));
+        P16.add(jTextFieldLavagemExterna, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 69, 24));
+
+        jLabel94.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel94.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel94.setText("MZN");
+        P16.add(jLabel94, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, -1, -1));
+
+        jLabel95.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel95.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel95.setText("Polimento e Encerramento");
+        P16.add(jLabel95, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 180, -1, -1));
+        P16.add(jTextFieldPolimentoEnceramento, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 210, 69, 24));
+
+        jLabel96.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel96.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel96.setText("MZN");
+        P16.add(jLabel96, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 210, -1, -1));
+        P16.add(jTextFieldLavagemExterna2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 400, 69, 24));
+        P16.add(jTextFieldLavagemInterna2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 400, 69, 24));
+
+        jLabel44.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel44.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel44.setText("MZN");
+        P16.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, -1, -1));
+
+        jLabel66.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel66.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel66.setText("MZN");
+        P16.add(jLabel66, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 400, -1, -1));
+
+        jLabel46.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel46.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel46.setText("MZN");
+        P16.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 400, -1, -1));
+        P16.add(jTextFieldLavagemCompleta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 400, 80, 24));
+
+        jLabel45.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel45.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel45.setText("Lavagem Completa");
+        P16.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 370, -1, -1));
+
+        jLabel68.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel68.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel68.setText("MZN");
+        P16.add(jLabel68, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 410, -1, -1));
+        P16.add(jTextFieldPolimentoEnceramento2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 400, 80, 24));
+
+        jLabel67.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel67.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel67.setText("Polimento e Encerramento");
+        P16.add(jLabel67, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 370, -1, -1));
+        P16.add(jTextFieldLavagemRodasPneus2, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 400, 110, 24));
+
+        jLabel48.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel48.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel48.setText("MZN");
+        P16.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 400, -1, -1));
+
+        jLabel47.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel47.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel47.setText("Lavagem de Rodas e Pneus");
+        P16.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 370, -1, -1));
+
+        jLabel43.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel43.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel43.setText("Lavagem Interna");
+        P16.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 370, -1, -1));
+
+        jLabel65.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel65.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel65.setText("Lavagem Externa");
+        P16.add(jLabel65, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, -1, -1));
+
+        jLabel87.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel87.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel87.setText("Lavagem Interna");
+        P16.add(jLabel87, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 550, -1, -1));
+
+        jLabel88.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel88.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel88.setText("MZN");
+        P16.add(jLabel88, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 580, -1, -1));
+        P16.add(jTextFieldLavagemInterna3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 580, 69, 24));
+
+        jLabel89.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel89.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel89.setText("MZN");
+        P16.add(jLabel89, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 580, -1, -1));
+
+        jLabel90.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel90.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel90.setText("Lavagem Externa");
+        P16.add(jLabel90, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 550, -1, -1));
+        P16.add(jTextFieldLavagemExterna3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 580, 69, 24));
+
+        jLabel91.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel91.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel91.setText("MZN");
+        P16.add(jLabel91, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 580, -1, -1));
+
+        jLabel92.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel92.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel92.setText("Lavagem Completa");
+        P16.add(jLabel92, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 550, -1, -1));
+        P16.add(jTextFieldLavagemCompleta3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 580, 80, 24));
+
+        jLabel97.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel97.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel97.setText("Polimento e Encerramento");
+        P16.add(jLabel97, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 550, -1, -1));
+
+        jLabel98.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel98.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel98.setText("MZN");
+        P16.add(jLabel98, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 590, -1, -1));
+        P16.add(jTextFieldPolimentoEnceramento3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 580, 80, 24));
+
+        jLabel99.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel99.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel99.setText("Lavagem de Rodas e Pneus");
+        P16.add(jLabel99, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 550, -1, -1));
+
+        jLabel100.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel100.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel100.setText("MZN");
+        P16.add(jLabel100, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 580, -1, -1));
+        P16.add(jTextFieldLavagemRodasPneus3, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 580, 110, 24));
+
+        Paineis.addTab("tab2", P16);
+
         getContentPane().add(Paineis, new org.netbeans.lib.awtextra.AbsoluteConstraints(259, -30, 1670, 720));
 
-        setSize(new java.awt.Dimension(1286, 705));
+        setSize(new java.awt.Dimension(1343, 705));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -2329,6 +2646,229 @@ System.out.println("Hora de Saída: " + horaSaida);
         // TODO add your handling code here:
     }//GEN-LAST:event_sexoComboBoxActionPerformed
 
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        // TODO add your handling code here:
+        Paineis.setSelectedComponent(P16);
+    }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void jLabel73MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel73MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel73MouseClicked
+
+    private void jLabel72MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel72MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel72MouseClicked
+
+    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+   // Conexão com o banco de dados
+    try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/testesdb", "root", "")) {
+        // Inicia uma transação
+        conn.setAutoCommit(false);
+
+        // Consulta SQL para atualizar o preço do serviço
+        String sql = "UPDATE preco_ligeiro SET preco = ? WHERE servico = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            // Configurando os preços dos serviços a partir dos JTextFields
+
+            // Lavagem Interna
+            pstmt.setBigDecimal(1, new BigDecimal(jTextFieldLavagemInterna.getText()));
+            pstmt.setString(2, "Lavagem Interna");
+            pstmt.executeUpdate();
+
+            // Lavagem Externa
+            pstmt.setBigDecimal(1, new BigDecimal(jTextFieldLavagemExterna.getText()));
+            pstmt.setString(2, "Lavagem Externa");
+            pstmt.executeUpdate();
+
+            // Lavagem Completa
+            pstmt.setBigDecimal(1, new BigDecimal(jTextFieldLavagemCompleta.getText()));
+            pstmt.setString(2, "Lavagem Completa");
+            pstmt.executeUpdate();
+
+            // Polimento e Enceramento
+            pstmt.setBigDecimal(1, new BigDecimal(jTextFieldPolimentoEnceramento.getText()));
+            pstmt.setString(2, "Polimento e Enceramento");
+            pstmt.executeUpdate();
+
+            // Lavagem de Rodas e Pneus
+            pstmt.setBigDecimal(1, new BigDecimal(jTextFieldLavagemRodasPneus.getText()));
+            pstmt.setString(2, "Lavagem de Rodas e Pneus");
+            pstmt.executeUpdate();
+        }
+
+        // Confirma a transação
+        conn.commit();
+        JOptionPane.showMessageDialog(this, "Preços atualizados com sucesso!");
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Erro ao atualizar os preços.");
+    }
+        
+    }//GEN-LAST:event_jButton19ActionPerformed
+
+    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
+        // TODO add your handling code here:
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/testesdb", "root", "")) {
+        // Inicia uma transação
+        conn.setAutoCommit(false);
+
+        // Consulta SQL para atualizar o preço do serviço
+        String sql = "UPDATE preco_medio SET preco = ? WHERE servico = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            // Configurando os preços dos serviços a partir dos JTextFields
+
+            // Lavagem Interna
+            pstmt.setBigDecimal(1, new BigDecimal(jTextFieldLavagemInterna2.getText()));
+            pstmt.setString(2, "Lavagem Interna");
+            pstmt.executeUpdate();
+
+            // Lavagem Externa
+            pstmt.setBigDecimal(1, new BigDecimal(jTextFieldLavagemExterna2.getText()));
+            pstmt.setString(2, "Lavagem Externa");
+            pstmt.executeUpdate();
+
+            // Lavagem Completa
+            pstmt.setBigDecimal(1, new BigDecimal(jTextFieldLavagemCompleta2.getText()));
+            pstmt.setString(2, "Lavagem Completa");
+            pstmt.executeUpdate();
+
+            // Polimento e Enceramento
+            pstmt.setBigDecimal(1, new BigDecimal(jTextFieldPolimentoEnceramento2.getText()));
+            pstmt.setString(2, "Polimento e Enceramento");
+            pstmt.executeUpdate();
+
+            // Lavagem de Rodas e Pneus
+            pstmt.setBigDecimal(1, new BigDecimal(jTextFieldLavagemRodasPneus2.getText()));
+            pstmt.setString(2, "Lavagem de Rodas e Pneus");
+            pstmt.executeUpdate();
+        }
+
+        // Confirma a transação
+        conn.commit();
+        JOptionPane.showMessageDialog(this, "Preços atualizados com sucesso!");
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Erro ao atualizar os preços.");
+    }
+    }//GEN-LAST:event_jButton20ActionPerformed
+
+    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
+        // TODO add your handling code here:
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/testesdb", "root", "")) {
+        // Inicia uma transação
+        conn.setAutoCommit(false);
+
+        // Consulta SQL para atualizar o preço do serviço
+        String sql = "UPDATE preco_pesado SET preco = ? WHERE servico = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            // Configurando os preços dos serviços a partir dos JTextFields
+
+            // Lavagem Interna
+            pstmt.setBigDecimal(1, new BigDecimal(jTextFieldLavagemInterna3.getText()));
+            pstmt.setString(2, "Lavagem Interna");
+            pstmt.executeUpdate();
+
+            // Lavagem Externa
+            pstmt.setBigDecimal(1, new BigDecimal(jTextFieldLavagemExterna3.getText()));
+            pstmt.setString(2, "Lavagem Externa");
+            pstmt.executeUpdate();
+
+            // Lavagem Completa
+            pstmt.setBigDecimal(1, new BigDecimal(jTextFieldLavagemCompleta3.getText()));
+            pstmt.setString(2, "Lavagem Completa");
+            pstmt.executeUpdate();
+
+            // Polimento e Enceramento
+            pstmt.setBigDecimal(1, new BigDecimal(jTextFieldPolimentoEnceramento3.getText()));
+            pstmt.setString(2, "Polimento e Enceramento");
+            pstmt.executeUpdate();
+
+            // Lavagem de Rodas e Pneus
+            pstmt.setBigDecimal(1, new BigDecimal(jTextFieldLavagemRodasPneus3.getText()));
+            pstmt.setString(2, "Lavagem de Rodas e Pneus");
+            pstmt.executeUpdate();
+        }
+
+        // Confirma a transação
+        conn.commit();
+        JOptionPane.showMessageDialog(this, "Preços atualizados com sucesso!");
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Erro ao atualizar os preços.");
+    }
+    }//GEN-LAST:event_jButton21ActionPerformed
+
+    private void jComboBoxTipoViaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTipoViaturaActionPerformed
+                                                    
+    // Obter o tipo de viatura selecionado
+    String tipoViatura = jComboBoxTipoViatura.getSelectedItem().toString();
+
+    // Inicializar os JTextFields dos preços como vazios
+    jTextFieldLavagemInterna.setText("");
+    jTextFieldLavagemExterna.setText("");
+    jTextFieldLavagemCompleta.setText("");
+    jTextFieldPolimentoEnceramento.setText("");
+    jTextFieldLavagemRodasPneus.setText("");
+
+    // Definir a tabela de acordo com o tipo de viatura selecionado
+    String tabelaPrecos;
+    switch (tipoViatura) {
+        case "Ligeiro":
+            tabelaPrecos = "preco_ligeiro";
+            break;
+        case "Medio":
+            tabelaPrecos = "preco_medio";
+            break;
+        case "Pesado":
+            tabelaPrecos = "preco_pesado";
+            break;
+        default:
+            JOptionPane.showMessageDialog(this, "Selecione um tipo de viatura válido.");
+            return;
+    }
+
+    // Conectar ao banco de dados para obter os preços do tipo de viatura selecionado
+    try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/testesdb", "root", "")) {
+        // Consulta SQL para obter os preços dos serviços na tabela correspondente
+        String sql = "SELECT servico, preco FROM " + tabelaPrecos;
+        try (PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            // Iterar pelos resultados e preencher os JTextFields correspondentes
+            while (rs.next()) {
+                String servico = rs.getString("servico");
+                BigDecimal preco = rs.getBigDecimal("preco");
+
+                // Atualizar os JTextFields com o preço correspondente
+                switch (servico) {
+                    case "Lavagem Interna":
+                        LavagemInterna.setText(preco.toString());
+                        break;
+                    case "Lavagem Externa":
+                       LavagemExterna.setText(preco.toString());
+                        break;
+                    case "Lavagem Completa":
+                        LavagemCompleta.setText(preco.toString());
+                        break;
+                    case "Polimento e Enceramento":
+                        PolimentoEnceramento.setText(preco.toString());
+                        break;
+                    case "Lavagem de Rodas e Pneus":
+                        LavagemRodasPneus.setText(preco.toString());
+                        break;
+                }
+            }
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Erro ao carregar os preços.");
+    }
+
+    }//GEN-LAST:event_jComboBoxTipoViaturaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2369,12 +2909,17 @@ System.out.println("Hora de Saída: " + horaSaida);
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cadastrar;
+    private javax.swing.JTextField LavagemCompleta;
+    private javax.swing.JTextField LavagemExterna;
+    private javax.swing.JTextField LavagemInterna;
+    private javax.swing.JTextField LavagemRodasPneus;
     private javax.swing.JPanel P1;
     private javax.swing.JPanel P10;
     private javax.swing.JPanel P11;
     private javax.swing.JPanel P12;
     private javax.swing.JPanel P13;
     private javax.swing.JPanel P14;
+    private javax.swing.JPanel P16;
     private javax.swing.JPanel P2;
     private javax.swing.JPanel P3;
     private javax.swing.JPanel P4;
@@ -2384,6 +2929,7 @@ System.out.println("Hora de Saída: " + horaSaida);
     private javax.swing.JPanel P8;
     private javax.swing.JPanel P9;
     private javax.swing.JTabbedPane Paineis;
+    private javax.swing.JTextField PolimentoEnceramento;
     private javax.swing.JLabel contacto;
     private javax.swing.JTextField contactoField;
     private javax.swing.JLabel email;
@@ -2394,7 +2940,11 @@ System.out.println("Hora de Saída: " + horaSaida);
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton18;
+    private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton20;
+    private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -2409,12 +2959,12 @@ System.out.println("Hora de Saída: " + horaSaida);
     private javax.swing.JButton jButtonSalvarAgendamento;
     private javax.swing.JButton jButtonSalvarEdicao;
     private javax.swing.JButton jButtonSalvarEdicao2;
-    private javax.swing.JCheckBox jCheckBoxHibernizacao;
-    private javax.swing.JCheckBox jCheckBoxLavagemCompleta;
-    private javax.swing.JCheckBox jCheckBoxLavagemExterna;
-    private javax.swing.JCheckBox jCheckBoxLavagemInterna;
-    private javax.swing.JCheckBox jCheckBoxLavagemRodape;
-    private javax.swing.JCheckBox jCheckBoxPolimento;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBox2;
+    private javax.swing.JCheckBox jCheckBox3;
+    private javax.swing.JCheckBox jCheckBox4;
+    private javax.swing.JCheckBox jCheckBox5;
+    private javax.swing.JCheckBox jCheckBox6;
     private javax.swing.JComboBox<String> jComboBoxCargo;
     private javax.swing.JComboBox<String> jComboBoxHoraEntrada;
     private javax.swing.JComboBox<String> jComboBoxHoraSaida;
@@ -2423,7 +2973,9 @@ System.out.println("Hora de Saída: " + horaSaida);
     private javax.swing.JComboBox<String> jComboBoxTipoViatura;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel100;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -2444,32 +2996,97 @@ System.out.println("Hora de Saída: " + horaSaida);
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel65;
+    private javax.swing.JLabel jLabel66;
+    private javax.swing.JLabel jLabel67;
+    private javax.swing.JLabel jLabel68;
+    private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel70;
+    private javax.swing.JLabel jLabel71;
+    private javax.swing.JLabel jLabel72;
+    private javax.swing.JLabel jLabel73;
+    private javax.swing.JLabel jLabel75;
+    private javax.swing.JLabel jLabel76;
+    private javax.swing.JLabel jLabel77;
+    private javax.swing.JLabel jLabel78;
+    private javax.swing.JLabel jLabel79;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel80;
+    private javax.swing.JLabel jLabel81;
+    private javax.swing.JLabel jLabel82;
+    private javax.swing.JLabel jLabel83;
+    private javax.swing.JLabel jLabel84;
+    private javax.swing.JLabel jLabel85;
+    private javax.swing.JLabel jLabel86;
+    private javax.swing.JLabel jLabel87;
+    private javax.swing.JLabel jLabel88;
+    private javax.swing.JLabel jLabel89;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabel90;
+    private javax.swing.JLabel jLabel91;
+    private javax.swing.JLabel jLabel92;
+    private javax.swing.JLabel jLabel93;
+    private javax.swing.JLabel jLabel94;
+    private javax.swing.JLabel jLabel95;
+    private javax.swing.JLabel jLabel96;
+    private javax.swing.JLabel jLabel97;
+    private javax.swing.JLabel jLabel98;
+    private javax.swing.JLabel jLabel99;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
     private javax.swing.JTable jTableAgendamentos;
     private javax.swing.JTable jTableClientes;
     private javax.swing.JTable jTableFeitos;
     private javax.swing.JTable jTableFuncionarios;
+    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextFieldContacto;
     private javax.swing.JTextField jTextFieldContacto2;
     private javax.swing.JTextField jTextFieldEmail;
     private javax.swing.JTextField jTextFieldHoraEntrada;
     private javax.swing.JTextField jTextFieldHoraSaida;
+    private javax.swing.JTextField jTextFieldLavagemCompleta;
+    private javax.swing.JTextField jTextFieldLavagemCompleta2;
+    private javax.swing.JTextField jTextFieldLavagemCompleta3;
+    private javax.swing.JTextField jTextFieldLavagemExterna;
+    private javax.swing.JTextField jTextFieldLavagemExterna2;
+    private javax.swing.JTextField jTextFieldLavagemExterna3;
+    private javax.swing.JTextField jTextFieldLavagemInterna;
+    private javax.swing.JTextField jTextFieldLavagemInterna2;
+    private javax.swing.JTextField jTextFieldLavagemInterna3;
+    private javax.swing.JTextField jTextFieldLavagemRodasPneus;
+    private javax.swing.JTextField jTextFieldLavagemRodasPneus2;
+    private javax.swing.JTextField jTextFieldLavagemRodasPneus3;
     private javax.swing.JTextField jTextFieldMarca;
     private javax.swing.JTextField jTextFieldMatricula;
     private javax.swing.JTextField jTextFieldMorada;
     private javax.swing.JTextField jTextFieldNomeCompleto;
     private javax.swing.JTextField jTextFieldPlaca;
+    private javax.swing.JTextField jTextFieldPolimentoEnceramento;
+    private javax.swing.JTextField jTextFieldPolimentoEnceramento2;
+    private javax.swing.JTextField jTextFieldPolimentoEnceramento3;
     private javax.swing.JTextField jTextFieldProprietario;
     private javax.swing.JTextField jTextFieldSalario;
     private javax.swing.JTextField jTextFieldSenha;

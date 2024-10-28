@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.DriverManager;
@@ -644,7 +645,7 @@ jComboBoxTipoMotor.addActionListener(new ActionListener() {
 
         Paineis.addTab("tab1", P3);
 
-        P5.setBackground(new java.awt.Color(255, 153, 153));
+        P5.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout P5Layout = new javax.swing.GroupLayout(P5);
         P5.setLayout(P5Layout);
@@ -654,7 +655,7 @@ jComboBoxTipoMotor.addActionListener(new ActionListener() {
         );
         P5Layout.setVerticalGroup(
             P5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 725, Short.MAX_VALUE)
+            .addGap(0, 729, Short.MAX_VALUE)
         );
 
         Paineis.addTab("tab2", P5);
@@ -864,6 +865,11 @@ jComboBoxTipoMotor.addActionListener(new ActionListener() {
         jComboBoxTipoViatura.setBackground(new java.awt.Color(255, 255, 255));
         jComboBoxTipoViatura.setForeground(new java.awt.Color(0, 0, 0));
         jComboBoxTipoViatura.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pesado", "Especial", "Ligeiro Pessoal", "Motocicleta" }));
+        jComboBoxTipoViatura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxTipoViaturaActionPerformed(evt);
+            }
+        });
         P7.add(jComboBoxTipoViatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, 130, -1));
 
         jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -2558,6 +2564,11 @@ private void limparCampos() {
     private void AgendamentosFeitosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgendamentosFeitosMouseClicked
        Paineis.setSelectedComponent(P12);
     }//GEN-LAST:event_AgendamentosFeitosMouseClicked
+
+    private void jComboBoxTipoViaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTipoViaturaActionPerformed
+
+
+    }//GEN-LAST:event_jComboBoxTipoViaturaActionPerformed
 
     /**
      * @param args the command line arguments
